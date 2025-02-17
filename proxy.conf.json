@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://astonishing-vacherin-00f9b2.netlify.app/.netlify/functions",
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
