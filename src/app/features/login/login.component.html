@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-box">
+    <div class="user-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="7" r="5"/>
+        <path d="M20 21v-2a6 6 0 0 0-6-6H10a6 6 0 0 0-6 6v2"/>
+      </svg>
+    </div>
+
+    <h2 class="sign-in-text">Sign In</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-field">
+        <input type="email"
+               formControlName="email"
+               placeholder="Email"
+               class="input-field"
+               required>
+      </div>
+
+      <button type="submit"
+              class="login-button"
+              [disabled]="!loginForm.valid">
+        Login
+      </button>
+
+      <div class="form-footer">
+        <div class="remember-me">
+          <mat-checkbox class="remember-checkbox">
+            Remember me
+          </mat-checkbox>
+        </div>
+        <a href="#" class="forgot-password">Forgot password?</a>
+      </div>
+
+      <div class="create-account">
+        <span>Not a member? </span>
+        <a href="#" class="create-link">Create Account</a>
+      </div>
+    </form>
+  </div>
+</div>

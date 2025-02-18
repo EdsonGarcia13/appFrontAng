@@ -24,54 +24,8 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
     MatCheckboxModule,
     MatDialogModule
   ],
-  template: `
-    <div class="container mx-auto p-4">
-      <mat-toolbar color="primary">
-        <span>Mis Tareas</span>
-        <span class="flex-1"></span>
-        <button mat-icon-button (click)="logout()">
-          <mat-icon>logout</mat-icon>
-        </button>
-      </mat-toolbar>
-
-      <div class="mt-4">
-        <button mat-raised-button color="primary" (click)="openTaskForm()">
-          Nueva Tarea
-        </button>
-      </div>
-
-      <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <mat-card *ngFor="let task of tasks">
-          <mat-card-header>
-            <mat-card-title>{{ task.title }}</mat-card-title>
-            <mat-card-subtitle>
-              {{ task.createdAt | date:'medium' }}
-            </mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <p>{{ task.description }}</p>
-          </mat-card-content>
-
-          <mat-card-actions>
-            <mat-checkbox
-              [checked]="task.completed"
-              (change)="toggleTaskStatus(task)">
-              Completada
-            </mat-checkbox>
-
-            <button mat-icon-button (click)="openTaskForm(task)">
-              <mat-icon>edit</mat-icon>
-            </button>
-
-            <button mat-icon-button color="warn" (click)="deleteTask(task)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
-  `
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
   tasks: Task[] = [];
@@ -92,7 +46,20 @@ export class TaskComponent implements OnInit {
       this.tasks = tasks;
     });
   }
+  confirmBack() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Cerrar Sesión',
+        message: '¿Estás seguro de que deseas cerrar la sesión?'
+      }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.logout();
+      }
+    });
+  }
   openTaskForm(task?: Task) {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '500px',

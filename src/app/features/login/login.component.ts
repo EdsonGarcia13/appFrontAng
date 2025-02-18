@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserService } from '../../core/services/user.service';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component.ts.component';
 
@@ -20,31 +22,12 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    HttpClientModule,
   ],
-  template: `
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-      <mat-card class="p-6 w-full max-w-md">
-        <mat-card-header>
-          <mat-card-title>Iniciar Sesión</mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content>
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4">
-            <mat-form-field class="w-full">
-              <mat-label>Correo electrónico</mat-label>
-              <input matInput type="email" formControlName="email" required>
-            </mat-form-field>
-
-            <button mat-raised-button color="primary" type="submit"
-                    [disabled]="!loginForm.valid" class="w-full mt-4">
-              Ingresar
-            </button>
-          </form>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  `
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -53,7 +36,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
-    private userService: UserService
+    @Inject(UserService) private userService: UserService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -69,6 +52,7 @@ export class LoginComponent {
           localStorage.setItem('userId', user.id!);
           localStorage.setItem('userEmail', user.email);
           this.router.navigate(['/tasks']);
+          console.log(user);
         },
         error: () => {
           const dialogRef = this.dialog.open(ConfirmDialogComponent, {

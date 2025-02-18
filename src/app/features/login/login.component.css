@@ -1,0 +1,132 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6b5b95 0%, #45407b 100%);
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.user-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  padding: 15px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sign-in-text {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-field {
+  position: relative;
+  width: 100%;
+}
+
+.input-field {
+  width: 94%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-field:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-button {
+  background: #ffa726;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.login-button:hover {
+  background: #ff9800;
+}
+
+.login-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  color: white;
+  width: 100%;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-checkbox {
+  color: white;
+}
+
+.forgot-password {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.create-account {
+  margin-top: 2rem;
+  color: white;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.create-link {
+  color: #ffa726;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: white !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #ffa726 !important;
+}

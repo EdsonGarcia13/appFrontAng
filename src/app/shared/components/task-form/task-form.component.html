@@ -1,1 +1,41 @@
-<p>task-form works!</p>
+<div class="modal-container">
+  <div class="modal-header">
+    <div class="header-icon">
+      <mat-icon>note_add</mat-icon>
+    </div>
+    <h2 class="header-title">New Note</h2>
+  </div>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="form-content">
+    <div class="form-fields">
+      <div class="input-group">
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="Title"
+          class="custom-input"
+          required>
+      </div>
+
+      <div class="input-group">
+        <textarea
+          formControlName="description"
+          placeholder="Description"
+          class="custom-input custom-textarea"
+          rows="4"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" class="cancel-button" (click)="dialogRef.close()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="!taskForm.valid">
+        Create
+      </button>
+    </div>
+  </form>
+</div>

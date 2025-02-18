@@ -1,1 +1,51 @@
-<p>task works!</p>
+<div class="main-container">
+  <div class="content-wrapper">
+    <div class="header">
+      <h1 class="title">My Notes</h1>
+      <button class="logout-button" (click)="confirmBack()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+
+    <div class="new-task-section">
+      <button class="new-task-button" (click)="openTaskForm()">
+        <mat-icon>add</mat-icon>
+        New Note
+      </button>
+    </div>
+
+    <div class="tasks-grid">
+      <mat-card *ngFor="let task of tasks" class="task-card">
+        <mat-card-header>
+          <mat-card-title>{{ task.title }}</mat-card-title>
+          <mat-card-subtitle>
+            {{ task.createdAt | date:'medium' }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{ task.description }}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="task-actions">
+          <mat-checkbox
+            [checked]="task.completed"
+            (change)="toggleTaskStatus(task)"
+            class="custom-checkbox">
+            <span class="checkbox-label">Completed</span>
+          </mat-checkbox>
+
+          <div class="action-buttons">
+            <button class="icon-button" (click)="openTaskForm(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button class="icon-button delete" (click)="deleteTask(task)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
