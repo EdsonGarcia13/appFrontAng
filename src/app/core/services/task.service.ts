@@ -8,10 +8,10 @@ import { environment } from '../../../enviroment/enviroment';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = `${environment.apiUrl}/getTask`;
-  private apiUrlC = `${environment.apiUrl}/createTask`;
-  private apiUrlU = `${environment.apiUrl}/updateTask`;
-  private apiUrlD = `${environment.apiUrl}/deleteTask`;
+  private apiUrl = `${environment.apiUrl}/getTasks`;
+  private apiUrlC = `${environment.apiUrl}/createTasks`;
+  private apiUrlU = `${environment.apiUrl}/updateTasks`;
+  private apiUrlD = `${environment.apiUrl}/deleteTasks`;
 
 
   constructor(private http: HttpClient) {}
